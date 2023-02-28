@@ -1,35 +1,6 @@
-import {
-  AppBar,
-  Box,
-  Link,
-  Tab,
-  Tabs,
-  Toolbar,
-  Typography,
-} from '@mui/material'
-import { defineMessages, useIntl } from 'react-intl'
 import Head from 'next/head'
-import { useRouter } from 'next/router'
-
-const M = defineMessages({
-  appCredit: {
-    defaultMessage: 'by Jesse Pinho',
-    id: 'NavBar.appCredit',
-  },
-  appName: {
-    defaultMessage: 'Film tools',
-    id: 'NavBar.appName',
-  },
-  callSheetsLabel: {
-    defaultMessage: 'Call sheets',
-    id: 'NavBar.callSheetsLabel',
-  },
-})
 
 export default function Home() {
-  const intl = useIntl()
-  const router = useRouter()
-
   return (
     <>
       <Head>
@@ -41,54 +12,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static">
-            <Toolbar>
-              <Typography
-                variant="h6"
-                noWrap
-                component="div"
-                sx={{
-                  flexShrink: 0,
-                  mr: 1,
-                  textDecoration: 'none',
-                  color: 'white',
-                }}
-              >
-                {intl.formatMessage(M.appName)}
-              </Typography>
-              <Typography
-                color="primary.light"
-                variant="body2"
-                sx={{
-                  flexShrink: 0,
-                  pt: 0.5,
-                }}
-              >
-                <Link
-                  href="https://jessepinho.com"
-                  target="_blank"
-                  underline="hover"
-                  color="inherit"
-                >
-                  {intl.formatMessage(M.appCredit)}
-                </Link>
-              </Typography>
-            </Toolbar>
-
-            <Tabs
-              value={0}
-              textColor="inherit"
-              indicatorColor="secondary"
-              variant="scrollable"
-            >
-              <Tab label="Call sheets" />
-            </Tabs>
-          </AppBar>
-        </Box>
-        {router.locale}
-      </main>
+      <main>Hello, world!</main>
     </>
   )
 }

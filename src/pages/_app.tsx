@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 
 import de from '@/lang/de.json'
 import { DEFAULT_LOCALE } from './constants'
+import NavBar from '@/components/NavBar'
 
 const AVAILABLE_LOCALES: { [key: string]: { [key: string]: string } } = {
   de,
@@ -24,6 +25,8 @@ export default function App({ Component, pageProps }: AppProps) {
       textComponent={React.Fragment}
       defaultLocale={DEFAULT_LOCALE}
     >
+      <NavBar />
+
       <Component {...pageProps} />
     </IntlProvider>
   )
