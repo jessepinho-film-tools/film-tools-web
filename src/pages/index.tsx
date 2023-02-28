@@ -1,7 +1,27 @@
 import { AppBar, Box, Tab, Tabs, Toolbar, Typography } from '@mui/material'
+import { defineMessages, useIntl } from 'react-intl'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+
+const M = defineMessages({
+  appCredit: {
+    defaultMessage: 'by Jesse Pinho',
+    id: 'NavBar.appCredit',
+  },
+  appName: {
+    defaultMessage: 'Film tools',
+    id: 'NavBar.appName',
+  },
+  callSheetsLabel: {
+    defaultMessage: 'Call sheets',
+    id: 'NavBar.callSheetsLabel',
+  },
+})
 
 export default function Home() {
+  const intl = useIntl()
+  const router = useRouter()
+
   return (
     <>
       <Head>
@@ -23,7 +43,7 @@ export default function Home() {
                 component="div"
                 sx={{ flexGrow: 1 }}
               >
-                Film tools
+                {intl.formatMessage(M.appName)}
               </Typography>
             </Toolbar>
 
@@ -37,6 +57,7 @@ export default function Home() {
             </Tabs>
           </AppBar>
         </Box>
+        {router.locale}
       </main>
     </>
   )
