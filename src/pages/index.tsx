@@ -1,4 +1,12 @@
-import { AppBar, Box, Tab, Tabs, Toolbar, Typography } from '@mui/material'
+import {
+  AppBar,
+  Box,
+  Link,
+  Tab,
+  Tabs,
+  Toolbar,
+  Typography,
+} from '@mui/material'
 import { defineMessages, useIntl } from 'react-intl'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
@@ -41,9 +49,31 @@ export default function Home() {
                 variant="h6"
                 noWrap
                 component="div"
-                sx={{ flexGrow: 1 }}
+                sx={{
+                  flexShrink: 0,
+                  mr: 1,
+                  textDecoration: 'none',
+                  color: 'white',
+                }}
               >
                 {intl.formatMessage(M.appName)}
+              </Typography>
+              <Typography
+                color="primary.light"
+                variant="body2"
+                sx={{
+                  flexShrink: 0,
+                  pt: 0.5,
+                }}
+              >
+                <Link
+                  href="https://jessepinho.com"
+                  target="_blank"
+                  underline="hover"
+                  color="inherit"
+                >
+                  {intl.formatMessage(M.appCredit)}
+                </Link>
               </Typography>
             </Toolbar>
 
