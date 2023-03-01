@@ -3,10 +3,10 @@ import {
   Card,
   CardActions,
   CardContent,
-  CardHeader,
   IconButton,
   Table,
   TableBody,
+  Typography,
 } from '@mui/material'
 import { defineMessages, useIntl } from 'react-intl'
 import { useFieldArray, useFormContext } from 'react-hook-form'
@@ -36,9 +36,11 @@ export default function Locations() {
 
   return (
     <Card>
-      <CardHeader title={intl.formatMessage(M.locationsTitle)} />
-
       <CardContent>
+        <Typography variant="h6">
+          {intl.formatMessage(M.locationsTitle)}
+        </Typography>
+
         <Table>
           <TableBody>
             {fields.map((field, index) => (

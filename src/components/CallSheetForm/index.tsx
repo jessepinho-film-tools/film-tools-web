@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, Grid, TextField } from '@mui/material'
+import { Card, CardContent, Grid, TextField, Typography } from '@mui/material'
 import { defineMessages, useIntl } from 'react-intl'
 import { FormProvider, useForm } from 'react-hook-form'
 
@@ -34,9 +34,11 @@ export default function CallSheetForm({ callSheet }: { callSheet?: any }) {
       <Grid container spacing={2}>
         <Grid item xs={12} sm={8}>
           <Card>
-            <CardHeader title={intl.formatMessage(M.basicInfoTitle)} />
-
             <CardContent>
+              <Typography variant="h6">
+                {intl.formatMessage(M.basicInfoTitle)}
+              </Typography>
+
               <TextField
                 label={intl.formatMessage(M.productionNameLabel)}
                 inputProps={register('production.name', { required: true })}
