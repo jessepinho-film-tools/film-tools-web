@@ -12,7 +12,7 @@ export default function handler(
   res: NextApiResponse<string>
 ) {
   return fetch(
-    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.query.latlng}&rankby=distance&type=hospital&key=${process.env.GOOGLE_MAPS_SERVER_SIDE_API_KEY}`
+    `https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.query.latlng}&rankby=distance&type=hospital&keyword=hospital&key=${process.env.GOOGLE_MAPS_SERVER_SIDE_API_KEY}`
   )
     .then((res) => res.json())
     .then((hospitals) => res.status(200).json(getAddresses(hospitals)))
