@@ -1,22 +1,14 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-type Data =
-  | {
-      highC: number
-      highF: number
-      lowC: number
-      lowF: number
-      sunrise: string
-      sunset: string
-      condition: string
-    }
-  | {}
+import Forecast from '@/types/Forecast'
 
-const getSimpleForecastForDate = (forecastData: any, date?: any): Data => {
+const getSimpleForecastForDate = (
+  forecastData: any,
+  date?: any
+): Forecast | {} => {
   const days = forecastData.forecast.forecastday
 
-  let simpleForecast: Data = {}
+  let simpleForecast: Forecast | {} = {}
 
   days.forEach((day: any) => {
     if (day.date !== date) return
@@ -36,7 +28,7 @@ const getSimpleForecastForDate = (forecastData: any, date?: any): Data => {
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<Data>
+  res: NextApiResponse<Forecast | {}>
 ) {
   return fetch(
     `http://api.weatherapi.com/v1/forecast.json?key=${process.env.WEATHER_API_KEY}&days=14&q=${req.query.latlng}`

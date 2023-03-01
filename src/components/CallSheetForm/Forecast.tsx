@@ -1,6 +1,10 @@
+import { Bedtime, LightMode, Thermostat } from '@mui/icons-material'
 import { defineMessages, useIntl } from 'react-intl'
+import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
+
+import type Forecast from '@/types/Forecast'
 
 const M = defineMessages({
   noDateOrLocationMessage: {
@@ -16,7 +20,7 @@ export default function Forecast() {
     control,
     name: ['date', 'locations.0.coordinates'],
   })
-  const [forecast, setForecast] = useState()
+  const [forecast, setForecast] = useState<Forecast>()
 
   const intl = useIntl()
 
@@ -37,5 +41,35 @@ export default function Forecast() {
     return intl.formatMessage(M.noDateOrLocationMessage)
   }
 
-  return <>{JSON.stringify(forecast)}</>
+  return (
+    <List>
+      <ListItem>
+        <ListItemIcon>
+          <Thermostat />
+        </ListItemIcon>
+        <ListItemText
+          primary={
+            <>
+              {forecast?.highF}&deg; / {forecast?.lowF}&deg;;{' '}
+              {forecast?.condition}
+            </>
+          }
+        />
+      </ListItem>
+
+      <ListItem>
+        <ListItemIcon>
+          <LightMode />
+        </ListItemIcon>
+        <ListItemText primary={forecast?.sunrise} />
+      </ListItem>
+
+      <ListItem>
+        <ListItemIcon>
+          <Bedtime />
+        </ListItemIcon>
+        <ListItemText primary={forecast?.sunset} />
+      </ListItem>
+    </List>
+  )
 }
