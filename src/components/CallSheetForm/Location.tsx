@@ -111,28 +111,26 @@ export default function Location({
           )}
           options={hospitals}
           getOptionLabel={(option) => option.name}
-          renderOption={(props, option) => {
-            return (
-              <Grid component="li" container {...props}>
-                <Grid item xs={12} sx={{ fontWeight: 'bold' }}>
-                  {option.name}
-                </Grid>
-                <Grid item xs={12}>
-                  {option.address}
-                </Grid>
-                <Grid item xs={12}>
-                  <Typography variant="caption">
-                    {intl.formatMessage(M.distanceMilesLabel, {
-                      distance: getDistanceInMiles(
-                        location.coordinates,
-                        option.coordinates
-                      ),
-                    })}
-                  </Typography>
-                </Grid>
+          renderOption={(props, option) => (
+            <Grid component="li" container {...props}>
+              <Grid item xs={12} sx={{ fontWeight: 'bold' }}>
+                {option.name}
               </Grid>
-            )
-          }}
+              <Grid item xs={12}>
+                {option.address}
+              </Grid>
+              <Grid item xs={12}>
+                <Typography variant="caption">
+                  {intl.formatMessage(M.distanceMilesLabel, {
+                    distance: getDistanceInMiles(
+                      location.coordinates,
+                      option.coordinates
+                    ),
+                  })}
+                </Typography>
+              </Grid>
+            </Grid>
+          )}
         />
       </TableCell>
     </TableRow>
