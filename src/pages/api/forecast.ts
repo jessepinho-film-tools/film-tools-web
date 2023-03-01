@@ -21,10 +21,10 @@ const getSimpleForecastForDate = (forecastData: any, date?: any): Data => {
   days.forEach((day: any) => {
     if (day.date !== date) return
     simpleForecast = {
-      highC: day.day.maxtemp_c,
-      highF: day.day.maxtemp_f,
-      lowC: day.day.mintemp_c,
-      lowF: day.day.mintemp_f,
+      highC: Math.round(day.day.maxtemp_c),
+      highF: Math.round(day.day.maxtemp_f),
+      lowC: Math.round(day.day.mintemp_c),
+      lowF: Math.round(day.day.mintemp_f),
       sunrise: day.astro.sunrise,
       sunset: day.astro.sunset,
       condition: day.day.condition.text,
