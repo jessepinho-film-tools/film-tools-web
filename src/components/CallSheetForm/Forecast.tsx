@@ -44,7 +44,7 @@ export default function Forecast() {
   }, [date, coordinates])
 
   if (!date || !coordinates) {
-    return intl.formatMessage(M.noDateOrLocationMessage)
+    return <>{intl.formatMessage(M.noDateOrLocationMessage)}</>
   }
 
   return (
