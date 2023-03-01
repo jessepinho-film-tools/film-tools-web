@@ -21,7 +21,6 @@ export default function Home() {
       <Head>
         <title>{intl.formatMessage(M.title)}</title>
         <meta name="description" content={intl.formatMessage(M.description)} />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
