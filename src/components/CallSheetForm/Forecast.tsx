@@ -1,6 +1,12 @@
 import { Bedtime, LightMode, Thermostat } from '@mui/icons-material'
 import { defineMessages, useIntl } from 'react-intl'
-import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material'
+import {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+} from '@mui/material'
 import { useEffect, useState } from 'react'
 import { useFormContext, useWatch } from 'react-hook-form'
 
@@ -42,34 +48,47 @@ export default function Forecast() {
   }
 
   return (
-    <List>
-      <ListItem>
-        <ListItemIcon>
-          <Thermostat />
-        </ListItemIcon>
-        <ListItemText
-          primary={
-            <>
-              {forecast?.highF}&deg; / {forecast?.lowF}&deg;;{' '}
-              {forecast?.condition}
-            </>
-          }
-        />
-      </ListItem>
+    <>
+      <List>
+        <ListItem>
+          <ListItemIcon>
+            <Thermostat />
+          </ListItemIcon>
+          <ListItemText
+            primary={
+              <>
+                {forecast?.highF}&deg; / {forecast?.lowF}&deg;;{' '}
+                {forecast?.condition}
+              </>
+            }
+          />
+        </ListItem>
 
-      <ListItem>
-        <ListItemIcon>
-          <LightMode />
-        </ListItemIcon>
-        <ListItemText primary={forecast?.sunrise} />
-      </ListItem>
+        <ListItem>
+          <ListItemIcon>
+            <LightMode />
+          </ListItemIcon>
+          <ListItemText primary={forecast?.sunrise} />
+        </ListItem>
 
-      <ListItem>
-        <ListItemIcon>
-          <Bedtime />
-        </ListItemIcon>
-        <ListItemText primary={forecast?.sunset} />
-      </ListItem>
-    </List>
+        <ListItem>
+          <ListItemIcon>
+            <Bedtime />
+          </ListItemIcon>
+          <ListItemText primary={forecast?.sunset} />
+        </ListItem>
+      </List>
+      <Typography variant="caption">
+        Powered by{' '}
+        <a
+          href="https://www.weatherapi.com/"
+          title="Weather API"
+          target="_blank"
+          rel="noreferrer"
+        >
+          WeatherAPI.com
+        </a>
+      </Typography>
+    </>
   )
 }
