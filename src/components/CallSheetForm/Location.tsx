@@ -20,7 +20,7 @@ const M = defineMessages({
     id: 'CallSheetForm.Locations.mapImageAltText',
   },
   notesLabel: {
-    defaultMessage: 'Notes',
+    defaultMessage: 'Notes (parking, etc.)',
     id: 'CallSheetForm.Locations.notesLabel',
   },
   nearestHospitalLabel: {
