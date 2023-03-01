@@ -80,13 +80,13 @@ export default function Locations() {
                 <TableCell sx={{ verticalAlign: 'top', width: '33%' }}>
                   <Controller
                     control={control}
-                    name="address"
+                    name={`locations.${index}`}
                     defaultValue=""
                     render={({ field }) => (
                       <>
                         <AddressField
                           onChange={field.onChange}
-                          value={field.value}
+                          value={field.value || ''}
                         />
 
                         {field.value && (
@@ -119,7 +119,7 @@ export default function Locations() {
         <IconButton
           color="primary"
           aria-label={intl.formatMessage(M.addButtonLabel)}
-          onClick={() => append({})}
+          onClick={() => append('')}
         >
           <AddCircle />
         </IconButton>
