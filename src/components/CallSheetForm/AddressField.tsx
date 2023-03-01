@@ -15,7 +15,7 @@ import { defineMessages, useIntl } from 'react-intl'
 
 const M = defineMessages({
   addressLabel: {
-    defaultMessage: 'Location address',
+    defaultMessage: 'Address',
     id: 'AddressField.label',
   },
   noOptionsText: {
