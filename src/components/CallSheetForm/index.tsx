@@ -1,10 +1,14 @@
-import { Card, CardContent, Grid, TextField } from '@mui/material'
+import { Card, CardContent, CardHeader, Grid, TextField } from '@mui/material'
 import { defineMessages, useIntl } from 'react-intl'
 import { FormProvider, useForm } from 'react-hook-form'
 
 import Locations from './Locations'
 
 const M = defineMessages({
+  basicInfoTitle: {
+    defaultMessage: 'The basics',
+    id: 'CallSheetForm.basicInfoTitle',
+  },
   productionNameLabel: {
     defaultMessage: 'Production name',
     id: 'CallSheetForm.productionNameLabel',
@@ -25,6 +29,8 @@ export default function CallSheetForm({ callSheet }: { callSheet?: any }) {
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <Card>
+            <CardHeader title={intl.formatMessage(M.basicInfoTitle)} />
+
             <CardContent>
               <TextField
                 label={intl.formatMessage(M.productionNameLabel)}

@@ -3,6 +3,7 @@ import {
   Card,
   CardActions,
   CardContent,
+  CardHeader,
   IconButton,
   Table,
   TableBody,
@@ -11,18 +12,17 @@ import {
   TableRow,
   TextField,
 } from '@mui/material'
-import {
-  Controller,
-  useFieldArray,
-  useFormContext,
-  useWatch,
-} from 'react-hook-form'
+import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { defineMessages, useIntl } from 'react-intl'
 
 import AddressField from './AddressField'
 import { GOOGLE_MAPS_API_KEY } from '@/pages/constants'
 
 const M = defineMessages({
+  locationsTitle: {
+    defaultMessage: 'Locations',
+    id: 'CallSheetForm.Locations.locationsTitle',
+  },
   locationHeader: {
     defaultMessage: 'Location',
     id: 'CallSheetForm.Locations.locationHeader',
@@ -57,11 +57,12 @@ export default function Locations() {
       name: 'locations',
     }
   )
-  const locations = useWatch({ control, name: 'locations' })
   const intl = useIntl()
 
   return (
     <Card>
+      <CardHeader title={intl.formatMessage(M.locationsTitle)} />
+
       <CardContent>
         <Table>
           <TableHead>
