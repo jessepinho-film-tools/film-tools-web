@@ -34,11 +34,11 @@ const getSimpleForecastForDate = (forecastData: any, date?: any): Data => {
   return simpleForecast
 }
 
-export default async function handler(
+export default function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  fetch(
+  return fetch(
     `http://api.weatherapi.com/v1/forecast.json?key=${process.env.WEATHER_API_KEY}&days=14&q=${req.query.latlng}`
   )
     .then((res) => res.json())

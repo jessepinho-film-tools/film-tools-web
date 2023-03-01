@@ -1,5 +1,6 @@
-import { useFormContext, useWatch } from 'react-hook-form'
 import { defineMessages, useIntl } from 'react-intl'
+import { useEffect, useState } from 'react'
+import { useFormContext, useWatch } from 'react-hook-form'
 
 const M = defineMessages({
   noDateOrLocationMessage: {
@@ -15,12 +16,26 @@ export default function Forecast() {
     control,
     name: ['date', 'locations.0.coordinates'],
   })
+  const [forecast, setForecast] = useState()
 
   const intl = useIntl()
+
+  useEffect(() => {
+    if (date && coordinates) {
+      const params = new URLSearchParams({
+        latlng: `${coordinates.lat},${coordinates.lng}`,
+        date,
+      })
+
+      fetch(`/api/forecast?${params}`)
+        .then((res) => res.json())
+        .then(setForecast)
+    }
+  }, [date, coordinates])
 
   if (!date || !coordinates) {
     return intl.formatMessage(M.noDateOrLocationMessage)
   }
 
-  return <>Weather</>
+  return <>{JSON.stringify(forecast)}</>
 }
