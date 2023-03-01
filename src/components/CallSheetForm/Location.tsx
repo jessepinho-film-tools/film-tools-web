@@ -1,6 +1,5 @@
 import {
   Autocomplete,
-  Box,
   TableRow,
   TableCell,
   TextField,
@@ -9,9 +8,11 @@ import {
 } from '@mui/material'
 import { Controller, useFormContext, useWatch } from 'react-hook-form'
 import { defineMessages, useIntl } from 'react-intl'
+import { getPreciseDistance } from 'geolib'
 import { useEffect, useState } from 'react'
 
 import AddressField from './AddressField'
+import Coordinates from '@/types/Coordinates'
 
 const M = defineMessages({
   mapImageAltText: {
@@ -26,7 +27,19 @@ const M = defineMessages({
     defaultMessage: 'Nearest hospital',
     id: 'CallSheetForm.Location.nearestHospitalLabel',
   },
+  distanceMilesLabel: {
+    defaultMessage: '{distance}mi from set',
+    id: 'CallSheetForm.Location.distanceMilesLabel',
+  },
 })
+
+const roundToOneDecimalPlace = (number: number) => Math.round(number * 10) / 10
+const convertMetersToMiles = (meters: number) =>
+  roundToOneDecimalPlace(meters * 0.000621)
+const getDistanceInMiles = (
+  coordinates1: Coordinates,
+  coordinates2: Coordinates
+) => convertMetersToMiles(getPreciseDistance(coordinates1, coordinates2))
 
 export default function Location({
   field,
@@ -106,6 +119,16 @@ export default function Location({
                 </Grid>
                 <Grid item xs={12}>
                   {option.address}
+                </Grid>
+                <Grid item xs={12}>
+                  <Typography variant="caption">
+                    {intl.formatMessage(M.distanceMilesLabel, {
+                      distance: getDistanceInMiles(
+                        location.coordinates,
+                        option.coordinates
+                      ),
+                    })}
+                  </Typography>
                 </Grid>
               </Grid>
             )
