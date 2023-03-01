@@ -10,7 +10,6 @@ import parse from 'autosuggest-highlight/parse'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
-import { GOOGLE_MAPS_API_KEY } from '@/pages/constants'
 import { defineMessages, useIntl } from 'react-intl'
 
 const M = defineMessages({
@@ -51,7 +50,7 @@ export default function AddressField({
   if (typeof window !== 'undefined' && !loaded.current) {
     if (!document.querySelector('#google-maps')) {
       loadScript(
-        `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`,
+        `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_CLIENT_SIDE_API_KEY}&libraries=places`,
         document.querySelector('head'),
         'google-maps'
       )

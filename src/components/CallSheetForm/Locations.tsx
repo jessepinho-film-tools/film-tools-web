@@ -16,7 +16,6 @@ import { Controller, useFieldArray, useFormContext } from 'react-hook-form'
 import { defineMessages, useIntl } from 'react-intl'
 
 import AddressField from './AddressField'
-import { GOOGLE_MAPS_API_KEY } from '@/pages/constants'
 
 const M = defineMessages({
   locationsTitle: {
@@ -92,7 +91,7 @@ export default function Locations() {
                         {field.value && (
                           <img
                             style={{ width: '100%' }}
-                            src={`https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=roadmap&zoom=16&key=${GOOGLE_MAPS_API_KEY}&markers=${field.value}`}
+                            src={`https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=roadmap&zoom=16&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_CLIENT_SIDE_API_KEY}&markers=${field.value}`}
                             alt={intl.formatMessage(M.mapImageAltText)}
                           />
                         )}
