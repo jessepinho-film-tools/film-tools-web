@@ -1,6 +1,7 @@
-import { Card } from '@mui/material'
-import Head from 'next/head'
 import { defineMessages, useIntl } from 'react-intl'
+import Head from 'next/head'
+
+import CallSheetForm from '@/components/CallSheetForm'
 
 const M = defineMessages({
   title: {
@@ -25,7 +26,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <Card>Hello, world!</Card>
+        <CallSheetForm />
       </main>
     </>
   )
