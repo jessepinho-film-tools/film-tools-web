@@ -7,6 +7,7 @@ import {
   Tabs,
   Tab,
 } from '@mui/material'
+import Image from 'next/image'
 import { defineMessages, useIntl } from 'react-intl'
 
 const M = defineMessages({
