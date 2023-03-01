@@ -4,6 +4,7 @@ const getAddresses = (resultFromGoogle: any) =>
   resultFromGoogle?.results.map((result: any) => ({
     name: result.name,
     address: result.vicinity,
+    coordinates: result.geometry.location,
   }))
 
 export default function handler(
