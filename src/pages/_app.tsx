@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app'
+import { Container } from '@mui/material'
 import { IntlProvider } from 'react-intl'
 import React from 'react'
 import { useRouter } from 'next/router'
@@ -27,7 +28,9 @@ export default function App({ Component, pageProps }: AppProps) {
     >
       <NavBar />
 
-      <Component {...pageProps} />
+      <Container maxWidth="md" sx={{ my: 2 }}>
+        <Component {...pageProps} />
+      </Container>
     </IntlProvider>
   )
 }
