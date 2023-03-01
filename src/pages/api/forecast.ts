@@ -9,6 +9,7 @@ type Data =
       lowF: number
       sunrise: string
       sunset: string
+      condition: string
     }
   | {}
 
@@ -26,6 +27,7 @@ const getSimpleForecastForDate = (forecastData: any, date?: any): Data => {
       lowF: day.day.mintemp_f,
       sunrise: day.astro.sunrise,
       sunset: day.astro.sunset,
+      condition: day.day.condition.text,
     }
   })
 
