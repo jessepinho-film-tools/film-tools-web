@@ -91,7 +91,7 @@ export default function Locations() {
                         {field.value && (
                           <img
                             style={{ width: '100%' }}
-                            src={`https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=roadmap&zoom=16&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_CLIENT_SIDE_API_KEY}&markers=${field.value}`}
+                            src={`https://maps.googleapis.com/maps/api/staticmap?size=400x200&maptype=roadmap&zoom=16&key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_CLIENT_SIDE_API_KEY}&markers=${field.value.address}`}
                             alt={intl.formatMessage(M.mapImageAltText)}
                           />
                         )}

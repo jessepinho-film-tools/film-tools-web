@@ -45,6 +45,7 @@ export default function AddressField({
   const [inputValue, setInputValue] = React.useState('')
   const [options, setOptions] = React.useState([])
   const loaded = React.useRef(false)
+  const geocoder = React.useRef(null)
   const intl = useIntl()
 
   if (typeof window !== 'undefined' && !loaded.current) {
@@ -121,7 +122,19 @@ export default function AddressField({
       onChange={(event, newValue) => {
         setOptions(newValue ? [newValue, ...options] : options)
         setValue(newValue)
-        onChange(newValue?.description)
+        if (!newValue) return
+        if (!geocoder.current) geocoder.current = new google.maps.Geocoder()
+        geocoder.current.geocode(
+          { address: newValue.description },
+          (results, status) => {
+            if (status === 'OK') {
+              onChange({
+                address: newValue.description,
+                coordinates: results[0].geometry.location,
+              })
+            }
+          }
+        )
       }}
       onInputChange={(event, newInputValue) => {
         setInputValue(newInputValue)
