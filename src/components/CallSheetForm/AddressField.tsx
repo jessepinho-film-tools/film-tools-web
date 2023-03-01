@@ -118,6 +118,7 @@ export default function AddressField({
       includeInputInList
       filterSelectedOptions
       value={value}
+      sx={{ mb: 2 }}
       noOptionsText={intl.formatMessage(M.noOptionsText)}
       onChange={(event, newValue) => {
         setOptions(newValue ? [newValue, ...options] : options)
