@@ -3,6 +3,7 @@ import { defineMessages, useIntl } from 'react-intl'
 import { FormProvider, useForm } from 'react-hook-form'
 
 import Locations from './Locations'
+import Forecast from './Forecast'
 
 const M = defineMessages({
   basicInfoTitle: {
@@ -31,7 +32,7 @@ export default function CallSheetForm({ callSheet }: { callSheet?: any }) {
   return (
     <FormProvider {...methods}>
       <Grid container spacing={2}>
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={8}>
           <Card>
             <CardHeader title={intl.formatMessage(M.basicInfoTitle)} />
 
@@ -52,6 +53,13 @@ export default function CallSheetForm({ callSheet }: { callSheet?: any }) {
                 variant="standard"
                 fullWidth
               />
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <Card>
+            <CardContent>
+              <Forecast />
             </CardContent>
           </Card>
         </Grid>
