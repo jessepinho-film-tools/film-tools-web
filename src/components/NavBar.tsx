@@ -36,15 +36,10 @@ export default function NavBar() {
       <AppBar position="static">
         <Toolbar>
           <Typography
-            variant="h6"
+            variant="h5"
             noWrap
             component="div"
-            sx={{
-              flexShrink: 0,
-              mr: 1,
-              textDecoration: 'none',
-              color: 'white',
-            }}
+            sx={{ flexShrink: 0, mr: 1 }}
           >
             {intl.formatMessage(M.appName)}
           </Typography>
