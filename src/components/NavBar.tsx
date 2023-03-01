@@ -11,12 +11,8 @@ import Image from 'next/image'
 import { defineMessages, useIntl } from 'react-intl'
 
 const M = defineMessages({
-  appCredit: {
-    defaultMessage: 'by Jesse Pinho',
-    id: 'NavBar.appCredit',
-  },
   appName: {
-    defaultMessage: 'Film tools',
+    defaultMessage: 'film tools',
     id: 'NavBar.appName',
   },
   callSheetsLabel: {
@@ -36,6 +32,15 @@ export default function NavBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
+          <Box sx={{ mr: 2 }}>
+            <Image
+              src="/logo.svg"
+              width={120}
+              height={50}
+              alt="Jesse Pinho's"
+            />
+          </Box>
+
           <Typography
             variant="h5"
             noWrap
@@ -43,23 +48,6 @@ export default function NavBar() {
             sx={{ flexShrink: 0, mr: 1 }}
           >
             {intl.formatMessage(M.appName)}
-          </Typography>
-          <Typography
-            color="primary.light"
-            variant="body2"
-            sx={{
-              flexShrink: 0,
-              pt: 0.5,
-            }}
-          >
-            <Link
-              href="https://jessepinho.com"
-              target="_blank"
-              underline="hover"
-              color="inherit"
-            >
-              {intl.formatMessage(M.appCredit)}
-            </Link>
           </Typography>
         </Toolbar>
 
