@@ -130,7 +130,10 @@ export default function AddressField({
             if (status === 'OK') {
               onChange({
                 address: newValue.description,
-                coordinates: results[0].geometry.location,
+                coordinates: {
+                  lat: results[0].geometry.location.lat(),
+                  lng: results[0].geometry.location.lng(),
+                },
               })
             }
           }
