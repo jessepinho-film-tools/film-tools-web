@@ -20,7 +20,7 @@ import { GOOGLE_MAPS_API_KEY } from '@/pages/constants'
 
 const M = defineMessages({
   locationsTitle: {
-    defaultMessage: 'Locations',
+    defaultMessage: 'Location(s)',
     id: 'CallSheetForm.Locations.locationsTitle',
   },
   locationHeader: {
