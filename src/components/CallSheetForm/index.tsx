@@ -17,6 +17,10 @@ const M = defineMessages({
     defaultMessage: 'The Greatest Film of All Time',
     id: 'CallSheetForm.productionNamePlaceholder',
   },
+  dateLabel: {
+    defaultMessage: 'Date',
+    id: 'CallSheetForm.dateLabel',
+  },
 })
 
 export default function CallSheetForm({ callSheet }: { callSheet?: any }) {
@@ -36,6 +40,15 @@ export default function CallSheetForm({ callSheet }: { callSheet?: any }) {
                 label={intl.formatMessage(M.productionNameLabel)}
                 inputProps={register('production.name', { required: true })}
                 placeholder={intl.formatMessage(M.productionNamePlaceholder)}
+                variant="standard"
+                fullWidth
+                sx={{ mb: 2 }}
+              />
+
+              <TextField
+                type="date"
+                label={intl.formatMessage(M.dateLabel)}
+                inputProps={register('date', { required: true })}
                 variant="standard"
                 fullWidth
               />
