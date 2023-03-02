@@ -1,5 +1,6 @@
 import { AddCircle } from '@mui/icons-material'
 import {
+  Button,
   Card,
   CardActions,
   CardContent,
@@ -19,7 +20,7 @@ const M = defineMessages({
     id: 'CallSheetForm.Locations.locationsTitle',
   },
   addButtonLabel: {
-    defaultMessage: 'Add another location',
+    defaultMessage: 'Add a location',
     id: 'CallSheetForm.Locations.addButtonLabel',
   },
 })
@@ -56,14 +57,9 @@ export default function Locations() {
       </CardContent>
 
       <CardActions sx={{ justifyContent: 'flex-end' }}>
-        <IconButton
-          color="primary"
-          size="large"
-          aria-label={intl.formatMessage(M.addButtonLabel)}
-          onClick={() => append('')}
-        >
-          <AddCircle />
-        </IconButton>
+        <Button onClick={() => append('')}>
+          {intl.formatMessage(M.addButtonLabel)}
+        </Button>
       </CardActions>
     </Card>
   )
