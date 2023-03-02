@@ -44,7 +44,12 @@ export default function Locations() {
         <Table>
           <TableBody>
             {fields.map((field, index) => (
-              <Location key={field.id} field={field} index={index} />
+              <Location
+                key={field.id}
+                field={field}
+                index={index}
+                remove={() => remove(index)}
+              />
             ))}
           </TableBody>
         </Table>
@@ -53,6 +58,7 @@ export default function Locations() {
       <CardActions sx={{ justifyContent: 'flex-end' }}>
         <IconButton
           color="primary"
+          size="large"
           aria-label={intl.formatMessage(M.addButtonLabel)}
           onClick={() => append('')}
         >

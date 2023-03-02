@@ -1,13 +1,15 @@
 import {
   Autocomplete,
+  Grid,
+  IconButton,
   TableRow,
   TableCell,
   TextField,
   Typography,
-  Grid,
 } from '@mui/material'
 import { Controller, useFormContext, useWatch } from 'react-hook-form'
 import { defineMessages, useIntl } from 'react-intl'
+import { Delete } from '@mui/icons-material'
 import { getPreciseDistance } from 'geolib'
 import { useEffect, useState } from 'react'
 
@@ -31,6 +33,10 @@ const M = defineMessages({
     defaultMessage: '{distance}mi from set',
     id: 'CallSheetForm.Location.distanceMilesLabel',
   },
+  removeButtonLabel: {
+    defaultMessage: 'Remove this location',
+    id: 'CallSheetForm.Location.removeButtonLabel',
+  },
 })
 
 const roundToOneDecimalPlace = (number: number) => Math.round(number * 10) / 10
@@ -44,9 +50,11 @@ const getDistanceInMiles = (
 export default function Location({
   field,
   index,
+  remove,
 }: {
   field: Record<'id', string>
   index: number
+  remove: () => void
 }) {
   const [hospitals, setHospitals] = useState<any[]>([])
   const { control } = useFormContext()
@@ -132,6 +140,17 @@ export default function Location({
             </Grid>
           )}
         />
+      </TableCell>
+
+      <TableCell sx={{ verticalAlign: 'top' }}>
+        <IconButton
+          color="primary"
+          size="large"
+          aria-label={intl.formatMessage(M.removeButtonLabel)}
+          onClick={() => remove()}
+        >
+          <Delete />
+        </IconButton>
       </TableCell>
     </TableRow>
   )
