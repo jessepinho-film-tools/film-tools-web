@@ -12,8 +12,12 @@ import { defineMessages, useIntl } from 'react-intl'
 
 const M = defineMessages({
   appName: {
-    defaultMessage: 'film tools',
+    defaultMessage: 'Film tools',
     id: 'NavBar.appName',
+  },
+  appCredit: {
+    defaultMessage: 'by Jesse Pinho',
+    id: 'NavBar.appCredit',
   },
   callSheetsLabel: {
     defaultMessage: 'Call sheets',
@@ -32,23 +36,23 @@ export default function NavBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Box sx={{ mr: 2 }}>
-            <Image
-              src="/logo.svg"
-              width={120}
-              height={50}
-              alt="Jesse Pinho's"
-            />
-          </Box>
-
           <Typography
-            variant="h5"
+            variant="h4"
             noWrap
             component="div"
-            sx={{ flexShrink: 0, mr: 1 }}
+            sx={{ flexShrink: 0, mr: 2 }}
           >
             {intl.formatMessage(M.appName)}
           </Typography>
+
+          <Box sx={{ opacity: 0.7 }}>
+            <Image
+              src="/signature.svg"
+              width={150}
+              height={70}
+              alt={intl.formatMessage(M.appCredit)}
+            />
+          </Box>
         </Toolbar>
 
         <Tabs
