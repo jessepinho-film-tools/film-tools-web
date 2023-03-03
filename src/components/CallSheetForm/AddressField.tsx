@@ -5,12 +5,13 @@ import * as React from 'react'
 import Autocomplete from '@mui/material/Autocomplete'
 import Box from '@mui/material/Box'
 import { debounce } from '@mui/material/utils'
+import { defineMessages, useIntl } from 'react-intl'
 import Grid from '@mui/material/Grid'
 import parse from 'autosuggest-highlight/parse'
 import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 
-import { defineMessages, useIntl } from 'react-intl'
+import AddressAndCoordinates from '@/types/AddressAndCoordinates'
 
 const M = defineMessages({
   addressLabel: {
@@ -35,17 +36,24 @@ function loadScript(src: string, position: HTMLHeadElement | null, id: string) {
   position.appendChild(script)
 }
 
-const autocompleteService = { current: null }
+const autocompleteService: {
+  current: null | google.maps.places.AutocompleteService
+} = { current: null }
 
 export default function AddressField({
   value: valueFromProps = null,
   onChange,
+}: {
+  value: any
+  onChange: (addressAndCoordinates: AddressAndCoordinates) => void
 }) {
   const [value, setValue] = React.useState(valueFromProps)
   const [inputValue, setInputValue] = React.useState('')
-  const [options, setOptions] = React.useState([])
+  const [options, setOptions] = React.useState<
+    google.maps.places.AutocompletePrediction[]
+  >([])
   const loaded = React.useRef(false)
-  const geocoder = React.useRef(null)
+  const geocoder = React.useRef<null | google.maps.Geocoder>(null)
   const intl = useIntl()
 
   if (typeof window !== 'undefined' && !loaded.current) {
@@ -85,21 +93,24 @@ export default function AddressField({
       return undefined
     }
 
-    fetch({ input: inputValue }, (results) => {
-      if (active) {
-        let newOptions = []
+    fetch(
+      { input: inputValue },
+      (results: google.maps.places.AutocompletePrediction[]) => {
+        if (active) {
+          let newOptions: google.maps.places.AutocompletePrediction[] = []
 
-        if (value) {
-          newOptions = [value]
+          if (value) {
+            newOptions = [value]
+          }
+
+          if (results) {
+            newOptions = [...newOptions, ...results]
+          }
+
+          setOptions(newOptions)
         }
-
-        if (results) {
-          newOptions = [...newOptions, ...results]
-        }
-
-        setOptions(newOptions)
       }
-    })
+    )
 
     return () => {
       active = false
@@ -127,7 +138,7 @@ export default function AddressField({
         geocoder.current.geocode(
           { address: newValue.description },
           (results, status) => {
-            if (status === 'OK') {
+            if (status === 'OK' && results?.length) {
               onChange({
                 address: newValue.description,
                 coordinates: {
@@ -149,7 +160,10 @@ export default function AddressField({
           variant="standard"
         />
       )}
-      renderOption={(props, option) => {
+      renderOption={(
+        props,
+        option: google.maps.places.AutocompletePrediction
+      ) => {
         const matches =
           option.structured_formatting.main_text_matched_substrings || []
 

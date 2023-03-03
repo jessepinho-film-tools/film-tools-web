@@ -492,6 +492,11 @@
   resolved "https://registry.yarnpkg.com/@types/autosuggest-highlight/-/autosuggest-highlight-3.2.0.tgz#716a1408b8d987a6b636cf30048cba101d9f1cae"
   integrity sha512-bTcsL4YYypjhKfPaImxuoMPiTyiUp7VGKytMr15/413IoazrOIfV/gca2ysI/IW0ftZYCPI5xppRm6IVX1Efqw==
 
+"@types/google.maps@^3.52.1":
+  version "3.52.1"
+  resolved "https://registry.yarnpkg.com/@types/google.maps/-/google.maps-3.52.1.tgz#ce91f0e98794b67c0c8f7044ac7973e3927d5b5c"
+  integrity sha512-O0MTQyE57zSWf04q/uNmKa3XHvgEj5pvDwJ4N3SqfYaHdusGVQWzkXkNYHeJPL09yHjvSdSy0WcDEX9C/do9kQ==
+
 "@types/hoist-non-react-statics@^3.3.1":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#1124aafe5118cb591977aeb1ceaaed1070eb039f"
