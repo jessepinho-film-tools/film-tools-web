@@ -108,7 +108,6 @@ export default function AddressField({
 
   return (
     <Autocomplete
-      id="google-map-demo"
       getOptionLabel={(option) =>
         typeof option === 'string' ? option : option.description
       }
