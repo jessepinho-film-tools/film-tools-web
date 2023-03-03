@@ -5,7 +5,7 @@ import React from 'react'
 import { useRouter } from 'next/router'
 
 import de from '@/lang/de.json'
-import { DEFAULT_LOCALE } from './constants'
+import { DEFAULT_LOCALE } from '@/constants'
 import NavBar from '@/components/NavBar'
 import ThemeWrapper from '@/components/ThemeWrapper'
 
